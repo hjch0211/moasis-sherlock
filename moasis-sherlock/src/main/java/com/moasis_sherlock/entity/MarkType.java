@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class MarkType {
-    @Id
+    @Id()
     private String name;
 
     public static MarkType create(String name) {

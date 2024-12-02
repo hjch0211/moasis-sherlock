@@ -4,18 +4,33 @@ spring:
   config:
     import: optional:file:.env[.properties]
   datasource:
-    url: jdbc:postgresql://localhost:5437/postgres
+    # profileSQL=true :  SQL 쿼리에 대한 성능 통계를 수집하여 로그
+    # logger=Slf4JLogger : 로그를 Slf4J로 출력
+    # maxQuerySizeToLog=1000 : 로그에 출력할 SQL의 최대 길이
+    url: jdbc:postgresql://localhost:5437/postgres?&profileSQL=true&logger=Slf4JLogger&maxQuerySizeToLog=1000
     password: ${POSTGRES_PASSWORD}
     username: ${POSTGRES_USER}
 
+  # [Todo] 로그에 실행 속도도 작성하기
   jpa:
     hibernate:
       ddl-auto: ${DDL_AUTO}
     show-sql: true
     properties:
       hibernate:
+        # format_sql: true # SQL 포맷팅
+        highlight_sql: true # ANSI 코드에 색 추가
+        # [Todo] 주의 뜨는 이유 찾아보기
         dialect: org.hibernate.dialect.PostgreSQLDialect
 
+# [Error] 작동 안됨.
+#  logging:
+#    level:
+#      org:
+#        hibernate:
+#          type:
+#            descriptor:
+#              sql: trace # SQL 파라미터 출력
 springdoc:
   swagger-ui:
     path: /docs

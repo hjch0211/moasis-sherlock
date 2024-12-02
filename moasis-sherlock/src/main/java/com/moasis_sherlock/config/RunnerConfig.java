@@ -4,6 +4,7 @@ import com.moasis_sherlock.entity.MarkType;
 import com.moasis_sherlock.entity.Person;
 import com.moasis_sherlock.repository.MarkTypeRepository;
 import com.moasis_sherlock.repository.PersonRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.ApplicationRunner;
@@ -23,10 +24,14 @@ public class RunnerConfig {
 
     @Bean
     @Order(Ordered.HIGHEST_PRECEDENCE)
+    @Transactional
     public ApplicationRunner initTable() {
         return args -> {
-            if (markTypeRepository.count() > 0) {
+            if (markTypeRepository.hasAnyRow()) {
                 log.info("MarkType 테이블 데이터가 이미 존재합니다.");
+                return;
+            } else if (personRepository.hasAnyRow()) {
+                log.info("Person 테이블 데이터가 이미 존재합니다.");
                 return;
             }
 
@@ -41,6 +46,7 @@ public class RunnerConfig {
                     MarkType.create("skull")
             };
             markTypeRepository.saveAll(Arrays.asList(markTypes));
+
 
             Person[] persons = new Person[]{
                     Person.create("세바스찬 모런", markTypes[7], markTypes[2]),
