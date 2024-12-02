@@ -11,14 +11,14 @@ import java.util.Set;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-public class Person {
+public class Card {
     @Id
     private String name;
 
     @ManyToMany
     private Set<MarkType> marks;
 
-    public static Person create(String name, MarkType... marks) {
-        return new Person(name, Set.of(marks));
+    public static Card create(String name, MarkType... marks) {
+        return new Card(name, Set.of(marks));
     }
 }

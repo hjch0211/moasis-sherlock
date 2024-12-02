@@ -24,7 +24,7 @@ public class GameController {
     @Operation(summary = "게임 준비", description = "카드 분배와 범인이 정해집니다.")
     @PostMapping("/ready")
     ResponseEntity<CommonResponse<GameDTO.ReadyResponse>> ready(
-            @RequestBody GameDTO.ReadRequest dto
+            @RequestBody GameDTO.ReadyRequest dto
     ) {
         GameDTO.ReadyResponse res = gameService.ready(dto.getUserId());
         return CommonResponse.success(res);
