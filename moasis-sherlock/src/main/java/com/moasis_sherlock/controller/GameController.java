@@ -30,9 +30,20 @@ public class GameController {
         return CommonResponse.success(res);
     }
 
-//    @PostMapping("/start/:id")
-//    ResponseEntity<CommonResponse<GameDTO.StartResponse>> start() {
-//        GameDTO.StartResponse res = gameService.start();
+//    @Operation(summary = "게임 조회", description = "전체 게임을 조회합니다.")
+//    @GetMapping
+//    ResponseEntity<CommonResponse<GameDTO.GamesResponse>> getGames() {
+//        GameDTO.GamesResponse res = gameService.getGames();
 //        return CommonResponse.success(res);
 //    }
+//
+//    @Operation(summary = "게임 조회", description = "게임 정보를 조회합니다.")
+//    @GetMapping("/{gameId}")
+//    ResponseEntity<CommonResponse<GameDTO.GameResponse>> getGame(
+//            @PathVariable Long gameId
+//    ) {
+//        GameDTO.GameResponse res = gameService.getGame(gameId);
+//        return CommonResponse.success(res);
+//    }
+
 }
