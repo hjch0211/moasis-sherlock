@@ -27,4 +27,13 @@ public class GameUserController {
         GameUserDTO.SignUpResponse res = gameUserService.signUp(dto);
         return CommonResponse.success(res);
     }
+
+    @Operation(summary = "로그인")
+    @PostMapping("/sign-in")
+    ResponseEntity<CommonResponse<GameUserDTO.SignInResponse>> signIn(
+            @RequestBody GameUserDTO.SignInRequest dto
+    ) {
+        GameUserDTO.SignInResponse res = gameUserService.signIn(dto);
+        return CommonResponse.success(res);
+    }
 }

@@ -7,10 +7,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 // [Todo] 인텔리제이를 껏다 안켜도 build.gradle 내용이 반영되게 하기.
 @Tag(name = "games")
@@ -30,20 +27,12 @@ public class GameController {
         return CommonResponse.success(res);
     }
 
-//    @Operation(summary = "게임 조회", description = "전체 게임을 조회합니다.")
-//    @GetMapping
-//    ResponseEntity<CommonResponse<GameDTO.GamesResponse>> getGames() {
-//        GameDTO.GamesResponse res = gameService.getGames();
-//        return CommonResponse.success(res);
-//    }
-//
-//    @Operation(summary = "게임 조회", description = "게임 정보를 조회합니다.")
-//    @GetMapping("/{gameId}")
-//    ResponseEntity<CommonResponse<GameDTO.GameResponse>> getGame(
-//            @PathVariable Long gameId
-//    ) {
-//        GameDTO.GameResponse res = gameService.getGame(gameId);
-//        return CommonResponse.success(res);
-//    }
-
+    @Operation(summary = "게임 조회", description = "전체 게임을 조회합니다.")
+    @GetMapping
+    ResponseEntity<CommonResponse<GameDTO.GamesResponse[]>> getGames(
+            @RequestParam(value = "userId", required = false) String userId
+    ) {
+        GameDTO.GamesResponse[] res = gameService.getGames(userId);
+        return CommonResponse.success(res);
+    }
 }

@@ -19,6 +19,7 @@ public class GameDTO {
         private int gameId;
     }
 
+    @Builder
     @Getter
     public static class GamesResponse {
         private int id;

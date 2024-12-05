@@ -7,8 +7,10 @@ import org.springframework.http.HttpStatus;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public enum CommonException {
     ID_NOT_FOUND(new CommonExceptionImpl(HttpStatus.NOT_FOUND, "id를 찾을 수 없습니다.")),
-    ID_DUPLICATED(new CommonExceptionImpl(HttpStatus.CONFLICT, "id가 중복되었습니다."));
-    
+    ID_DUPLICATED(new CommonExceptionImpl(HttpStatus.CONFLICT, "id가 중복되었습니다.")),
+    USER_NOT_FOUND(new CommonExceptionImpl(HttpStatus.NOT_FOUND, "사용자를 찾을 수 없습니다.")),
+    PASSWORD_MISMATCH(new CommonExceptionImpl(HttpStatus.UNAUTHORIZED, "비밀번호가 일치하지 않습니다."));
+
     private final CommonExceptionImpl exception;
 
     // [Temp] toException() 메서드을 사용하지 않을 수 없을까

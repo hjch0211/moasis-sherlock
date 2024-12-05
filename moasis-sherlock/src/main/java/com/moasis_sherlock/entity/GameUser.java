@@ -7,22 +7,16 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.CreatedDate;
-
-import java.time.LocalDateTime;
 
 @Entity
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-public class GameUser {
+public class GameUser extends TimeStampEntity {
     @Id
     private String id;
 
     @NotBlank
     private String password;
-
-    @CreatedDate
-    private LocalDateTime createdAt;
 }

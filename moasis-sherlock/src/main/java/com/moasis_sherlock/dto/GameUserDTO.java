@@ -17,4 +17,16 @@ public class GameUserDTO {
     public static class SignUpResponse {
         private String id;
     }
+
+    @Getter
+    public static class SignInRequest {
+        private String id;
+        private String password;
+    }
+
+    @Builder
+    @Getter
+    public static class SignInResponse {
+        private String id;
+    }
 }
